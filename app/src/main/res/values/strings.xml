@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Digital Watch Material You</string>
+    <string name="banner_ad_unit_id">ca-app-pub-6443706394815840/2164264804</string>
+    <string name="interstinal_ad_unit_id">ca-app-pub-6443706394815840/4900424571</string>
+    <string name="mensagem">Thank you for installing the IOS Style Watch.\n\nPlease read these important instructions.\n\nThis is a widget, not a regular application. Unlike regular applications, widgets are placed on the home screen and offer useful (hopefully) information at a glance. In many cases, such as with this widget, you can press the widget and view additional, or more detailed, information. Pressing this widget will open the alarm clock application.\n</string>
+</resources>

@@ -1,0 +1,13 @@
+// Top-level build file para a sintaxe moderna com 'plugins'.
+// Este bloco define os plugins que estarão disponíveis para todos os módulos do projeto.
+plugins {
+    // Define o plugin de aplicação Android e sua versão.
+    // 'apply false' significa que ele não será aplicado ao projeto raiz,
+    // mas sim aos módulos que o solicitarem (como o módulo 'app').
+    id 'com.android.application' version '8.2.2' apply false
+}
+
+// Tarefa para limpar o diretório de build (geralmente não é mais necessária, mas pode ser mantida)
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,273 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:layout_alignParentTop="true"
+        android:elevation="4dp"
+        ads:title="Configurações do Widget"
+        ads:titleTextColor="@color/white"
+        ads:navigationIcon="?attr/homeAsUpIndicator"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@+id/adViewConfig"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp"
+            android:gravity="center_horizontal">
+
+            <!-- Fonts Section Removed -->
+
+
+            <!-- Colors -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cor do Texto/Ícone"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+             <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:clipToPadding="false"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="24dp">
+                    
+                    <!-- Default -->
+                    <LinearLayout android:id="@+id/optColorDefault" android:layout_width="80dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="50dp" android:layout_height="50dp" android:background="@drawable/bg_circle" android:backgroundTint="?android:attr/colorAccent"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Padrão" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                         <ImageView android:id="@+id/checkColorDefault" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- White -->
+                    <LinearLayout android:id="@+id/optColorWhite" android:layout_width="80dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="50dp" android:layout_height="50dp" android:background="@drawable/bg_circle" android:backgroundTint="#FFFFFF"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Branco" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                         <ImageView android:id="@+id/checkColorWhite" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- Black -->
+                    <LinearLayout android:id="@+id/optColorBlack" android:layout_width="80dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="50dp" android:layout_height="50dp" android:background="@drawable/bg_circle" android:backgroundTint="#000000"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Preto" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                         <ImageView android:id="@+id/checkColorBlack" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                     <!-- Red -->
+                    <LinearLayout android:id="@+id/optColorRed" android:layout_width="80dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="50dp" android:layout_height="50dp" android:background="@drawable/bg_circle" android:backgroundTint="#D32F2F"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vermelho" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                         <ImageView android:id="@+id/checkColorRed" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- Green -->
+                    <LinearLayout android:id="@+id/optColorGreen" android:layout_width="80dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="50dp" android:layout_height="50dp" android:background="@drawable/bg_circle" android:backgroundTint="#388E3C"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Verde" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                         <ImageView android:id="@+id/checkColorGreen" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- Blue -->
+                    <LinearLayout android:id="@+id/optColorBlue" android:layout_width="80dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="50dp" android:layout_height="50dp" android:background="@drawable/bg_circle" android:backgroundTint="#1976D2"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Azul" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                         <ImageView android:id="@+id/checkColorBlue" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+            <!-- Background Shape -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Formato do Fundo"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:clipToPadding="false"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="24dp">
+                    
+                    <!-- Organic -->
+                    <LinearLayout android:id="@+id/optShapeOrganic" android:layout_width="100dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="60dp" android:layout_height="60dp" android:background="@drawable/bg_organic" android:backgroundTint="#CCCCCC"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Orgânico" android:layout_marginTop="8dp" android:gravity="center"/>
+                        <ImageView android:id="@+id/checkShapeOrganic" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- Rounded -->
+                    <LinearLayout android:id="@+id/optShapeRounded" android:layout_width="100dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="60dp" android:layout_height="60dp" android:background="@drawable/bg_rounded" android:backgroundTint="#CCCCCC"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Arredondado" android:layout_marginTop="8dp" android:gravity="center"/>
+                         <ImageView android:id="@+id/checkShapeRounded" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- Square -->
+                    <LinearLayout android:id="@+id/optShapeSquare" android:layout_width="100dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="60dp" android:layout_height="60dp" android:background="@drawable/bg_square" android:backgroundTint="#CCCCCC"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Quadrado" android:layout_marginTop="8dp" android:gravity="center"/>
+                         <ImageView android:id="@+id/checkShapeSquare" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- Circular -->
+                    <LinearLayout android:id="@+id/optShapeCircular" android:layout_width="100dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="60dp" android:layout_height="60dp" android:background="@drawable/bg_circle" android:backgroundTint="#CCCCCC"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Circular" android:layout_marginTop="8dp" android:gravity="center"/>
+                         <ImageView android:id="@+id/checkShapeCircular" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+            <!-- Background Style -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estilo do Fundo"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:clipToPadding="false"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="24dp">
+                    
+                    <!-- Default -->
+                    <LinearLayout android:id="@+id/optStyleDefault" android:layout_width="90dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="60dp" android:layout_height="60dp" android:background="@drawable/bg_rounded" android:backgroundTint="?android:attr/colorBackgroundFloating"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Padrão" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                        <ImageView android:id="@+id/checkStyleDefault" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- Transparent -->
+                    <LinearLayout android:id="@+id/optStyleTransparent" android:layout_width="90dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="60dp" android:layout_height="60dp" android:background="@drawable/bg_rounded" android:backgroundTint="#00FFFFFF"/> <!-- Invisible but present -->
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Transparente" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                        <ImageView android:id="@+id/checkStyleTransparent" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- Liquid Glass -->
+                    <LinearLayout android:id="@+id/optStyleGlass" android:layout_width="90dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="60dp" android:layout_height="60dp" android:background="@drawable/bg_glass_rounded"/> 
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vidro" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                        <ImageView android:id="@+id/checkStyleGlass" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- Black 50 -->
+                    <LinearLayout android:id="@+id/optStyleBlack50" android:layout_width="90dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="60dp" android:layout_height="60dp" android:background="@drawable/bg_rounded" android:backgroundTint="#80000000"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Preto 50%" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                        <ImageView android:id="@+id/checkStyleBlack50" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <!-- White 50 -->
+                    <LinearLayout android:id="@+id/optStyleWhite50" android:layout_width="90dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackground" android:padding="8dp">
+                        <View android:layout_width="60dp" android:layout_height="60dp" android:background="@drawable/bg_rounded" android:backgroundTint="#80FFFFFF"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Branco 50%" android:layout_marginTop="8dp" android:gravity="center" android:textSize="12sp"/>
+                        <ImageView android:id="@+id/checkStyleWhite50" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" android:layout_marginTop="4dp" android:visibility="gone"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Toggles -->
+            <Switch
+                android:id="@+id/swAlarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mostrar Próximo Alarme"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:checked="true"/>
+
+            <Switch
+                android:id="@+id/swBattery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mostrar Bateria"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:checked="true"/>
+
+            <Switch
+                android:id="@+id/swWeather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mostrar Previsão do Tempo"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:layout_marginBottom="32dp"/>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Salvar e Adicionar Widget"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewConfig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-6443706394815840/2164264804" />
+
+</RelativeLayout>

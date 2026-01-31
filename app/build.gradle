@@ -1,0 +1,52 @@
+// Aplica o plugin de aplicação Android, que já foi definido no arquivo build.gradle do projeto raiz.
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    // Namespace é obrigatório para as novas versões do Android Gradle Plugin.
+    namespace "com.ricardo.digitalwidgetmaterialyou"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.ricardo.digitalwidgetmaterialyou"
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 3
+        versionName "2.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Define a compatibilidade do código-fonte para usar recursos do Java 8.
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Dependências atualizadas para serem compatíveis com a SDK 34
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    // Dependências do Google Play Services
+    implementation 'com.google.android.gms:play-services-ads:23.0.0'
+    implementation 'com.google.android.gms:play-services-location:21.2.0'
+
+    // Dependências de teste atualizadas
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+

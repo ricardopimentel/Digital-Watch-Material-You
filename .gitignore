@@ -12,3 +12,7 @@
 /captures
 .externalNativeBuild
 .cxx
+.idea/
+/build/
+*.iml
+app/release/

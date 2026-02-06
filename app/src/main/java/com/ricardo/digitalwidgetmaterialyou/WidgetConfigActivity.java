@@ -213,13 +213,17 @@ public class WidgetConfigActivity extends androidx.appcompat.app.AppCompatActivi
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
                 if (mAppWidgetId != 0) {
-                    int[] appWidgetIds = new int[] { mAppWidgetId };
-                    new Widget().onUpdate(context, appWidgetManager, appWidgetIds);
+                    // Update this specific widget
+                    Intent updateIntent = new Intent(context, Widget.class);
+                    updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                    updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[] { mAppWidgetId });
+                    context.sendBroadcast(updateIntent);
 
                     Intent resultValue = new Intent();
                     resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
                     setResult(RESULT_OK, resultValue);
                 } else {
+                    // Update all widgets
                     ComponentName thisAppWidget = new ComponentName(context.getPackageName(), Widget.class.getName());
                     int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisAppWidget);
                     for (int id : appWidgetIds) {
@@ -231,7 +235,12 @@ public class WidgetConfigActivity extends androidx.appcompat.app.AppCompatActivi
                         savePref(context, id, "battery_enabled", swBattery.isChecked() ? "true" : "false");
                         savePref(context, id, "weather_enabled", swWeather.isChecked() ? "true" : "false");
                     }
-                    new Widget().onUpdate(context, appWidgetManager, appWidgetIds);
+                    
+                    Intent updateIntent = new Intent(context, Widget.class);
+                    updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                    updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+                    context.sendBroadcast(updateIntent);
+                    
                     setResult(RESULT_OK);
                 }
                 finish();

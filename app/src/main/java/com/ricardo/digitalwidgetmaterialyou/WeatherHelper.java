@@ -33,17 +33,30 @@ public class WeatherHelper {
         LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         Location location = null;
         try {
-            // Try Network Provider first (faster/battery friendly)
-            if (lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-                location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            }
-            // Fallback to GPS
-            if (location == null && lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            // Smart Strategy: Check ALL enabled providers for the most recent position
+            java.util.List<String> providers = lm.getProviders(true);
+            long bestTime = 0;
+            for (String provider : providers) {
+                Location l = lm.getLastKnownLocation(provider);
+                if (l != null) {
+                    if (location == null || l.getTime() > bestTime) {
+                        location = l;
+                        bestTime = l.getTime();
+                    }
+                }
             }
         } catch (SecurityException e) {
             callback.onError("Permission denied");
             return;
+        }
+
+        // --- NEW: Location Fallback & Caching ---
+        if (location != null) {
+            // Save valid location
+            saveLocation(context, location);
+        } else {
+            // Try to load cached location
+            location = loadLocation(context);
         }
 
         if (location == null) {
@@ -58,12 +71,12 @@ public class WeatherHelper {
         // 2. Fetch Data in Background
         executor.execute(() -> {
             try {
-                String urlString = String.format(API_URL, lat, lon).replace(",", "."); // Ensure dot decimal
+                String urlString = String.format(java.util.Locale.US, API_URL, lat, lon);
                 URL url = new URL(urlString);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
-                conn.setConnectTimeout(5000);
-                conn.setReadTimeout(5000);
+                conn.setConnectTimeout(15000);
+                conn.setReadTimeout(15000);
 
                 int responseCode = conn.getResponseCode();
 
@@ -138,5 +151,31 @@ public class WeatherHelper {
             default:
                 return R.drawable.ic_weather_unknown; // Fallback
         }
+    }
+
+    private static void saveLocation(Context context, Location location) {
+        context.getSharedPreferences("weather_prefs", Context.MODE_PRIVATE)
+                .edit()
+                .putString("last_lat", String.valueOf(location.getLatitude()))
+                .putString("last_lon", String.valueOf(location.getLongitude()))
+                .apply();
+    }
+
+    private static Location loadLocation(Context context) {
+        android.content.SharedPreferences prefs = context.getSharedPreferences("weather_prefs", Context.MODE_PRIVATE);
+        String latStr = prefs.getString("last_lat", null);
+        String lonStr = prefs.getString("last_lon", null);
+
+        if (latStr != null && lonStr != null) {
+            try {
+                Location loc = new Location("cached");
+                loc.setLatitude(Double.parseDouble(latStr));
+                loc.setLongitude(Double.parseDouble(lonStr));
+                return loc;
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return null;
     }
 }

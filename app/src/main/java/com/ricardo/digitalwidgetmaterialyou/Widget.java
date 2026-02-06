@@ -113,10 +113,8 @@ public class Widget extends AppWidgetProvider {
         // --- Color Logic ---
         String colorPref = loadPref(context, appWidgetId, "color", "default");
         int color = 0;
-        if ("default".equals(colorPref)) {
-            // Do nothing. Let the layout XML define the colors.
-            color = 0;
-        } else if ("white".equals(colorPref))
+        
+        if ("white".equals(colorPref))
             color = android.graphics.Color.WHITE;
         else if ("black".equals(colorPref))
             color = android.graphics.Color.BLACK;
@@ -126,10 +124,25 @@ public class Widget extends AppWidgetProvider {
             color = android.graphics.Color.parseColor("#388E3C");
         else if ("blue".equals(colorPref))
             color = android.graphics.Color.parseColor("#1976D2");
+        else {
+             // "default" -> Use System Accent Color explicitly to overwrite previous custom color
+             // We use a ContextThemeWrapper with DeviceDefault to ensure we get the system's Dynamic Colors (Material You), 
+             // not the App's static theme colors.
+             Context themeContext = new android.view.ContextThemeWrapper(context, android.R.style.Theme_DeviceDefault_DayNight);
+             color = getThemeAttrColor(themeContext, android.R.attr.colorAccent);
+        }
 
         if (color != 0) {
             views.setTextColor(R.id.tvTime, color);
-            views.setTextColor(R.id.tvData, color);
+            
+            if ("default".equals(colorPref)) {
+                 Context themeContext = new android.view.ContextThemeWrapper(context, android.R.style.Theme_DeviceDefault_DayNight);
+                 int dateColor = getThemeAttrColor(themeContext, android.R.attr.textColorHighlightInverse);
+                 views.setTextColor(R.id.tvData, dateColor);
+            } else {
+                 views.setTextColor(R.id.tvData, color);
+            }
+            
             views.setTextColor(R.id.tvAlarm, color);
             views.setTextColor(R.id.tvBattery, color);
             views.setInt(R.id.imgAlarm, "setColorFilter", color);
@@ -209,8 +222,7 @@ public class Widget extends AppWidgetProvider {
                     @Override
                     public void onError(String error) {
                         android.util.Log.e("WidgetWeather", "Error: " + error);
-                        WidgetConfigActivity.savePref(context, appWidgetId, "weather_temp", "Err");
-                        WidgetConfigActivity.savePref(context, appWidgetId, "weather_code", "-1");
+                        // Do NOT overwrite with "Err", keep old value
                         updateAppWidget(context, appWidgetManager, appWidgetId, false);
                     }
                 });
@@ -277,5 +289,16 @@ public class Widget extends AppWidgetProvider {
         }
 
         return value;
+    }
+    private static int getThemeAttrColor(Context context, int attr) {
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        if (context.getTheme().resolveAttribute(attr, typedValue, true)) {
+             if (typedValue.resourceId != 0) {
+                 return context.getResources().getColor(typedValue.resourceId, context.getTheme());
+             } else {
+                 return typedValue.data;
+             }
+        }
+        return 0; // Fallback
     }
 }

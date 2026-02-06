@@ -6,14 +6,14 @@ plugins {
 android {
     // Namespace é obrigatório para as novas versões do Android Gradle Plugin.
     namespace "com.ricardo.digitalwidgetmaterialyou"
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.ricardo.digitalwidgetmaterialyou"
         minSdkVersion 21
-        targetSdkVersion 34
-        versionCode 3
-        versionName "2.0"
+        targetSdkVersion 35
+        versionCode 5
+        versionName "2.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
